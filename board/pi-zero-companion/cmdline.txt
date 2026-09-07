@@ -1,0 +1,1 @@
+root=/dev/mmcblk0p2 rootwait console=tty1 console=ttyAMA0,115200 g_ether.host_addr=c6:ea:cc:95:cf:5f g_ether.dev_addr=e6:1c:c5:b3:b3:97

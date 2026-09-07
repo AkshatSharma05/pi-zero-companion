@@ -1,0 +1,12 @@
+start_file=start.elf
+fixup_file=fixup.dat
+kernel=Image
+disable_overscan=1
+gpu_mem_256=100
+gpu_mem_512=100
+gpu_mem_1024=100
+dtoverlay=miniuart-bt
+arm_64bit=1
+
+# The data port is permanently a USB Ethernet gadget.
+dtoverlay=dwc2,dr_mode=peripheral
