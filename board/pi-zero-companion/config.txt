@@ -7,6 +7,7 @@ gpu_mem_512=100
 gpu_mem_1024=100
 dtoverlay=miniuart-bt
 arm_64bit=1
+camera_auto_detect=1
 
 # The data port is permanently a USB Ethernet gadget.
 dtoverlay=dwc2,dr_mode=peripheral

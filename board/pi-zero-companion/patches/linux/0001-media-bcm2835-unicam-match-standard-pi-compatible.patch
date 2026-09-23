@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pi Zero Companion <pi-zero-companion@localhost>
+Date: Thu, 24 Sep 2026 00:00:00 +0000
+Subject: [PATCH] media: bcm2835-unicam: match standard Pi compatible
+
+The Raspberry Pi device tree uses the standard bcm2835-unicam compatible,
+while the upstream-style driver also needs to bind to that compatible for the
+CSI platform device to probe.
+
+Signed-off-by: Pi Zero Companion <pi-zero-companion@localhost>
+---
+ drivers/media/platform/broadcom/bcm2835-unicam.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/media/platform/broadcom/bcm2835-unicam.c
++++ b/drivers/media/platform/broadcom/bcm2835-unicam.c
+@@ -2711,6 +2711,7 @@ static void unicam_remove(struct platform_device *pdev)
+ 
+ static const struct of_device_id unicam_of_match[] = {
+ 	{ .compatible = "brcm,bcm2835-unicam-upstream", },
++	{ .compatible = "brcm,bcm2835-unicam", },
+ 	{ /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, unicam_of_match);
+--
+2.39.5
