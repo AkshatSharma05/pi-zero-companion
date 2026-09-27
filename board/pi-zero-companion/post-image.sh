@@ -12,7 +12,13 @@ done
 KERNEL=$(sed -n 's/^kernel=//p' "${BINARIES_DIR}/rpi-firmware/config.txt")
 FILES+=( "${KERNEL}" )
 BOOT_FILES=$(printf '\t\t\t"%s",\n' "${FILES[@]}")
-sed "s|#BOOT_FILES#|${BOOT_FILES}|" "${BOARD_DIR}/genimage.cfg.in" > "${GENIMAGE_CFG}"
+while IFS= read -r line || [[ -n "${line}" ]]; do
+	if [[ "${line}" == "#BOOT_FILES#" ]]; then
+		printf '%s\n' "${BOOT_FILES}"
+	else
+		printf '%s\n' "${line}"
+	fi
+done < "${BOARD_DIR}/genimage.cfg.in" > "${GENIMAGE_CFG}"
 
 ROOTPATH_TMP="$(mktemp -d)"
 trap 'rm -rf "${ROOTPATH_TMP}"' EXIT

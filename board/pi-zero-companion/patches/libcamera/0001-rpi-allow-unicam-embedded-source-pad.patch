@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pi Zero Companion <pi-zero-companion@localhost>
+Date: Sat, 27 Sep 2026 00:00:00 +0000
+Subject: [PATCH] pipeline: rpi: ignore Unicam embedded source pad
+
+The upstream Unicam media entity exposes image and embedded-data source pads.
+The first source pad is the unicam-image frontend used by the VC4 pipeline;
+ignore later source pads instead of rejecting the whole bridge entity.
+
+Signed-off-by: Pi Zero Companion <pi-zero-companion@localhost>
+---
+ src/libcamera/pipeline/rpi/common/pipeline_base.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/libcamera/pipeline/rpi/common/pipeline_base.cpp b/src/libcamera/pipeline/rpi/common/pipeline_base.cpp
+--- a/src/libcamera/pipeline/rpi/common/pipeline_base.cpp
++++ b/src/libcamera/pipeline/rpi/common/pipeline_base.cpp
+@@ -1061,4 +1061,4 @@
+ 			if (sourcePad)
+-				return false;
++				continue;
+ 
+ 			sourcePad = pad;
+--
+2.39.5
